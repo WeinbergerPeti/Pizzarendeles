@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use App\Models\Order;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,16 +14,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+        Schema::create('orders', function (Blueprint $table) {
+            $table->id("order_id");
+            $table->foreignId("user_id")->references("id")->on("users");
+            $table->foreignId("pizza_id")->references("pizza_id")->on("pizzas");
             $table->timestamps();
         });
 
-        User::create(["name"=>"Máté", "email"=>"diak1@gmail.com"]);
-        User::create(["name"=>"Dóri", "email"=>"diak2@gmail.com"]);
+        Order::create(["user_id"=>1, "pizza_id"=>1]);
+        Order::create(["user_id"=>2, "pizza_id"=>2]);
     }
 
     /**
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('orders');
     }
 };
