@@ -23,6 +23,7 @@ return new class extends Migration
 
         Pizza::create(["name"=>"Son-Go-Ku", "ingredients"=>" paradicsom alap, sonka, gomba, kukorica, sajt"]);
         Pizza::create(["name"=>"Pepperóni", "ingredients"=>"paradicsom alap, pepperóni, sajt"]);
+        Pizza::create(["name"=>"Húsimádó", "ingredients"=>"paradicsom alap, pepperóni, sajt, sonka, szalámi, bacon"]);
     }
 
     /**
